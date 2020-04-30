@@ -1,0 +1,15 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Zeppelin ignored files
+/ZeppelinRemoteNotebooks/
+# Editor-based HTTP Client requests
+/httpRequests/
+# JAR repositories and modules, imported from Gradle
+/jarRepositories.xml
+/modules.xml
+# gradle.xml file: https://youtrack.jetbrains.com/issue/IDEA-55923?_ga=2.121808776.2061223027.1588137699-321498654.1587281384
+/gradle.xml
