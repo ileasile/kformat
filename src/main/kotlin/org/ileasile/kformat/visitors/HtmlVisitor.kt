@@ -30,6 +30,7 @@ class HtmlVisitor(private val colorConverter: HtmlColorConverter = BasicHtmlColo
     private fun StringTagsStack.addFormat(format: Format) = with(format) {
         addTagIf(bold, "b")
         addTagIf(italic, "i")
+        addTagIf(underlined, "u")
 
         val styles = ArrayList<Pair<String, String>>().apply {
             if (color != null) add("color" to colorConverter.convert(color))

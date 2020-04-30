@@ -9,6 +9,7 @@ import kotlin.reflect.full.memberProperties
 data class Format(
     val bold: Boolean? = null,
     val italic: Boolean? = null,
+    val underlined: Boolean? = null,
     val color: Color? = null,
     val bgColor: Color? = null
 ) {
@@ -34,7 +35,8 @@ data class Format(
         val EMPTY = Format()
         val DEFAULT = Format(
             bold = false,
-            italic = false
+            italic = false,
+            underlined = false
         )
     }
 }

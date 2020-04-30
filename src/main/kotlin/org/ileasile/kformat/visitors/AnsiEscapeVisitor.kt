@@ -33,6 +33,7 @@ class AnsiEscapeVisitor : FormatVisitor<String> {
     private fun StringBuilder.addFormat(format: Format) = with(format) {
         addTagIf(bold, AnsiConstants.BOLD_MARK)
         addTagIf(italic, AnsiConstants.ITALIC_MARK)
+        addTagIf(underlined, AnsiConstants.UNDERLINE_MARK)
 
         if (color != null) addTag(color.encodeFg())
         if (bgColor != null) addTag(bgColor.encodeBg())

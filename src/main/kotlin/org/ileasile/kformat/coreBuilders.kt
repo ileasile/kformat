@@ -33,6 +33,8 @@ class FormatTextBlock(val format: Format = Format.EMPTY) :
         Format(bold = on), builder)
     fun italic(on: Boolean = true, builder: BuildAction) = withFormat(
         Format(italic = on), builder)
+    fun underlined(on: Boolean = true, builder: BuildAction) = withFormat(
+        Format(underlined = on), builder)
     fun color(color: Color, builder: BuildAction) = withFormat(
         Format(color = color), builder)
     fun bgColor(color: Color, builder: BuildAction) = withFormat(

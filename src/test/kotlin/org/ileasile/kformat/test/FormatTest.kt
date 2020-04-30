@@ -39,7 +39,10 @@ class FormatTest {
 
             +" Normal text"
             italic {
-                +" Italic text"
+                +" Italic "
+                underlined {
+                    +"text"
+                }
             }
             bgColor(BasicColor.Red) {
                 + " Colored"
