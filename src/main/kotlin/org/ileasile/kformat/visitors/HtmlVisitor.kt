@@ -5,7 +5,6 @@ import org.ileasile.kformat.BasicColor
 import org.ileasile.kformat.ColorConverter
 import org.ileasile.kformat.Format
 import org.ileasile.kformat.FormatTextBlock
-import org.ileasile.kformat.FormatVisitor
 import org.ileasile.kformat.RGB8
 import org.ileasile.kformat.RgbAwareColor
 import org.ileasile.kformat.SimpleTextBlock
@@ -13,7 +12,7 @@ import org.ileasile.kformat.util.StringTagsStack
 import org.ileasile.kformat.util.buildStringTags
 
 class HtmlVisitor(private val colorConverter: HtmlColorConverter = BasicHtmlColorConverter()) :
-    FormatVisitor<String> {
+    AbstractAdaptableVisitor<String>() {
     override fun visitSimpleText(block: SimpleTextBlock): String = block.content
 
     override fun visitFormatText(block: FormatTextBlock): String =

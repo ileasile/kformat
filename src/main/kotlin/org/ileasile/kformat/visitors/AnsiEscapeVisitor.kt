@@ -4,11 +4,10 @@ import java.util.Stack
 import org.ileasile.kformat.BuildAction
 import org.ileasile.kformat.Format
 import org.ileasile.kformat.FormatTextBlock
-import org.ileasile.kformat.FormatVisitor
 import org.ileasile.kformat.SimpleTextBlock
 import org.ileasile.kformat.kFormat
 
-class AnsiEscapeVisitor : FormatVisitor<String> {
+class AnsiEscapeVisitor : AbstractAdaptableVisitor<String>() {
     private val formatStack = Stack<Format>()
 
     override fun visitSimpleText(block: SimpleTextBlock) = block.content

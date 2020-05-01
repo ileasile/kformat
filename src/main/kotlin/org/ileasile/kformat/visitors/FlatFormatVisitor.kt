@@ -3,7 +3,6 @@ package org.ileasile.kformat.visitors
 import org.ileasile.kformat.BuildAction
 import org.ileasile.kformat.Format
 import org.ileasile.kformat.FormatTextBlock
-import org.ileasile.kformat.FormatVisitor
 import org.ileasile.kformat.SimpleTextBlock
 import org.ileasile.kformat.kFormat
 
@@ -14,7 +13,7 @@ data class TextWithFormat(
 
 typealias PreparedFormattedText = List<TextWithFormat>
 
-class FlatFormatVisitor : FormatVisitor<PreparedFormattedText> {
+class FlatFormatVisitor : AbstractAdaptableVisitor<PreparedFormattedText>() {
     override fun visitSimpleText(block: SimpleTextBlock): PreparedFormattedText = with(block) {
         if (content.isEmpty())
             return emptyList()

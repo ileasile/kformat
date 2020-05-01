@@ -50,7 +50,6 @@ interface AnsiAwareColor : Color {
 }
 
 data class AnsiColorInfo(
-    val name: String,
     val color: BasicColor,
     val isBright: Boolean = false
 )
@@ -91,15 +90,18 @@ enum class BasicColor(val code: Int) : AnsiAwareColor {
     override val extCode: Int
         get() = code
 
+    val htmlName: String
+        get() = name.toLowerCase()
+
     override val ansiInfo: AnsiColorInfo
-        get() = AnsiColorInfo(name.toLowerCase(), this)
+        get() = AnsiColorInfo(this)
 }
 
 inline class BrightColor(
     private val baseColor: BasicColor
 ) : AnsiAwareColor {
     override val ansiInfo: AnsiColorInfo
-        get() = AnsiColorInfo(baseColor.name, baseColor, true)
+        get() = AnsiColorInfo(baseColor, true)
     override val fgCode: Int
         get() = baseColor.code + 90
     override val bgCode: Int
