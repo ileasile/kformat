@@ -5,12 +5,8 @@ import org.ileasile.kformat.FormatVisitor
 import org.ileasile.kformat.SimpleTextBlock
 import org.ileasile.kformat.TextBlock
 
-interface VisitorAdapter <T> : FormatVisitor<T> {
-    fun setVisitor(visitor: FormatVisitor<T>)
+interface VisitorAdapter <R> : FormatVisitor<R> {
+    fun setVisitor(visitor: FormatVisitor<R>)
 
-    override fun visitSimpleText(block: SimpleTextBlock): T
-
-    override fun visitFormatText(block: FormatTextBlock): T
-
-    fun visitChild(element: TextBlock): T
+    fun visit(element: TextBlock): R
 }

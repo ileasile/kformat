@@ -9,21 +9,23 @@ import org.ileasile.kformat.RGB8
 import org.ileasile.kformat.RgbAwareColor
 import org.ileasile.kformat.SimpleTextBlock
 import org.ileasile.kformat.util.StringTagsStack
-import org.ileasile.kformat.util.buildStringTags
 
-class HtmlVisitor(private val colorConverter: HtmlColorConverter = BasicHtmlColorConverter()) :
+class HtmlVisitor(
+    private val colorConverter: HtmlColorConverter = BasicHtmlColorConverter(),
+    private val pretty: Boolean = false
+) :
     AbstractAdaptableVisitor<String>() {
     override fun visitSimpleText(block: SimpleTextBlock): String = block.content
 
     override fun visitFormatText(block: FormatTextBlock): String =
-        buildStringTags {
+        StringTagsStack().apply {
             addFormat(block.format)
-            val contents = buildString {
-                for (child in block.children) {
-                    append(child.accept(this@HtmlVisitor))
-                }
-            }
-            setContents(contents)
+            this.contents = block.children.joinToString("\n", transform = this@HtmlVisitor::visitChild)
+        }.run {
+            if(pretty)
+                finalizeIndent()
+            else
+                finalize()
         }
 
     private fun StringTagsStack.addFormat(format: Format) = with(format) {

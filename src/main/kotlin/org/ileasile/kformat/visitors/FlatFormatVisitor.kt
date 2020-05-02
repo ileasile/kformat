@@ -23,7 +23,7 @@ class FlatFormatVisitor : AbstractAdaptableVisitor<PreparedFormattedText>() {
 
     override fun visitFormatText(block: FormatTextBlock): PreparedFormattedText = with(block) {
         return children.flatMap { block ->
-            val prepared = block.accept(this@FlatFormatVisitor)
+            val prepared = visitChild(block)
             prepared.map { it.copy(format = format.merge(it.format)) }
         }
     }

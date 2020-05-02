@@ -8,7 +8,7 @@ abstract class AbstractAdaptableVisitor<T> : AdaptableVisitor<T> {
 
     override fun visitChild(element: TextBlock): T {
         return if (this::adapterInstance.isInitialized)
-            adapterInstance.visitChild(element)
+            adapterInstance.visit(element)
         else
             super.visitChild(element)
     }

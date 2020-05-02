@@ -57,7 +57,7 @@ class FormatTest {
 
         println(formatted.accept(AnsiEscapeVisitor()))
         println(formatted.accept(PlainTextVisitor()))
-        println(formatted.accept(HtmlVisitor()))
+        println(formatted.accept(HtmlVisitor(pretty = true)))
     }
 
     @Test
@@ -66,7 +66,7 @@ class FormatTest {
             +"A"; bold { +"B" }; +"C"
         }
         val formatted2 = kFormat {
-            +"D"; bold { +"E" }; +"F"
+            +"D"; bold { +"E"; italic { +"YY" }; +"Z"}; +"F"
         }
 
         val visitor = AnsiEscapeVisitor()

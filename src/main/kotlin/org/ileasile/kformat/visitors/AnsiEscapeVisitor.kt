@@ -20,7 +20,7 @@ class AnsiEscapeVisitor : AbstractAdaptableVisitor<String>() {
 
         formatStack.push(mergedFormat)
         for (child in block.children)
-            append(child.accept(this@AnsiEscapeVisitor))
+            append(visitChild(child))
         formatStack.pop()
 
         append(AnsiConstants.RESET_CSI)

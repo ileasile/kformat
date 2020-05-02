@@ -12,5 +12,5 @@ class SimpleVisitorAdapter<T> : AbstractVisitorAdapter<T>() {
     override fun visitFormatText(block: FormatTextBlock): T =
         visitorInstance.visitFormatText(block)
 
-    override fun visitChild(element: TextBlock): T = element.accept(this)
+    override fun visit(element: TextBlock): T = element.accept(this)
 }

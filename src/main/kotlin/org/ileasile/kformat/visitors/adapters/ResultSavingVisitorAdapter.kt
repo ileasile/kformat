@@ -24,7 +24,7 @@ class ResultSavingVisitorAdapter<T>(
         return results.peek()
     }
 
-    override fun visitChild(element: TextBlock): T {
+    override fun visit(element: TextBlock): T {
         element.accept(this)
         return results.pop()
     }
@@ -34,7 +34,7 @@ class ResultSavingVisitorAdapter<T>(
     fun finalize(): T = joiner(results)
 
     fun finalizeAndClear(): T {
-        val finalized = joiner(results)
+        val finalized = finalize()
         clear()
         return finalized
     }
