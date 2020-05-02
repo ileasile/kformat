@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm")
     id("org.jlleitschuh.gradle.ktlint")
+    `maven-publish`
 }
 
 group = "org.ileasile"
@@ -33,5 +34,27 @@ tasks.withType(KotlinCompile::class.java) {
         jvmTarget = "12"
         languageVersion = "1.4"
         freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/ileasile/${rootProject.name}")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("gpr") {
+            groupId = "org.ileasile"
+            artifactId = rootProject.name
+            version = "0.1"
+
+            from(components["java"])
+        }
     }
 }
