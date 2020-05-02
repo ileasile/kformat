@@ -66,7 +66,7 @@ class FormatTest {
             +"A"; bold { +"B" }; +"C"
         }
         val formatted2 = kFormat {
-            +"D"; bold { +"E"; italic { +"YY" }; +"Z"}; +"F"
+            +"D"; bold { +"E"; italic { +"YY" }; +"Z" }; +"F"
         }
 
         val visitor = AnsiEscapeVisitor()

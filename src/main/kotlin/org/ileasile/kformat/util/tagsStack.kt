@@ -28,7 +28,7 @@ open class TagsStack<T>(
         })
 }
 
-class StringTagsStack : TagsStack<String>({ it.joinToString ("") }) {
+class StringTagsStack : TagsStack<String>({ it.joinToString("") }) {
     fun finalizeIndent(indent: String = " ".repeat(4)) =
         transformer(ArrayList<String>().apply {
             val n = openTags.size

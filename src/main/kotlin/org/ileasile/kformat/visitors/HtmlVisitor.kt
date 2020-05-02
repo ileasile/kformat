@@ -22,7 +22,7 @@ class HtmlVisitor(
             addFormat(block.format)
             this.contents = block.children.joinToString("\n", transform = this@HtmlVisitor::visitChild)
         }.run {
-            if(pretty)
+            if (pretty)
                 finalizeIndent()
             else
                 finalize()
