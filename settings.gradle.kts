@@ -5,6 +5,7 @@ rootProject.name = "kformat"
 pluginManagement {
     val kotlinVersion: String by settings
     val ktlintPluginVersion: String by settings
+    val dokkaVersion: String by settings
 
     val repos: (RepositoryHandler).() -> Unit = {
         jcenter()
@@ -27,6 +28,7 @@ pluginManagement {
     plugins {
         kotlin("jvm") version kotlinVersion
         id("org.jlleitschuh.gradle.ktlint") version ktlintPluginVersion
+        id("org.jetbrains.dokka") version dokkaVersion
     }
 }
 
