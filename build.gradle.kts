@@ -8,9 +8,6 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
-group = "org.ileasile"
-version = "1.0-SNAPSHOT"
-
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
@@ -47,6 +44,7 @@ tasks {
     }
 
     val javadocJar by registering(Jar::class) {
+        group = "documentation"
         dependsOn(dokkaJavadoc)
         archiveClassifier.set("javadoc")
         from(this@tasks.javadoc.get().destinationDir!!)
