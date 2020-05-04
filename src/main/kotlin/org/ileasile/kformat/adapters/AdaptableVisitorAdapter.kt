@@ -1,4 +1,4 @@
-package org.ileasile.kformat.visitors.adapters
+package org.ileasile.kformat.adapters
 
 import org.ileasile.kformat.visitors.AdaptableVisitor
 

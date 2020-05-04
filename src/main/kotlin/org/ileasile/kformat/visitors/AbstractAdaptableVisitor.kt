@@ -1,7 +1,7 @@
 package org.ileasile.kformat.visitors
 
 import org.ileasile.kformat.TextBlock
-import org.ileasile.kformat.visitors.adapters.VisitorAdapter
+import org.ileasile.kformat.adapters.VisitorAdapter
 
 abstract class AbstractAdaptableVisitor<T> : AdaptableVisitor<T> {
     private lateinit var adapterInstance: VisitorAdapter<T>

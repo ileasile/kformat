@@ -16,6 +16,10 @@ class FormatTextBlock(val format: Format = Format.EMPTY) :
     val children: List<TextBlock>
         get() = _children
 
+    override fun toString(): String {
+        return "{$format}: $children"
+    }
+
     override fun <R> accept(visitor: FormatVisitor<R>) = visitor.visitFormatText(this)
 
     operator fun String.unaryPlus() = _children.add(SimpleTextBlock(this))
@@ -42,7 +46,7 @@ class FormatTextBlock(val format: Format = Format.EMPTY) :
 }
 
 fun kFormat(builder: BuildAction): FormatTextBlock {
-    val block = FormatTextBlock(Format.DEFAULT)
+    val block = FormatTextBlock()
     block.builder()
     return block
 }

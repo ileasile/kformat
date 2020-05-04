@@ -1,13 +1,13 @@
-package org.ileasile.kformat.visitors.adapters
+package org.ileasile.kformat.adapters
 
 import java.util.Stack
 import org.ileasile.kformat.FormatTextBlock
 import org.ileasile.kformat.SimpleTextBlock
 import org.ileasile.kformat.TextBlock
 
-class ResultSavingVisitorAdapter<T>(
+open class ResultSavingVisitorAdapter<T>(
     private val joiner: (List<T>) -> T
-) : AbstractVisitorAdapter<T>() {
+) : SimpleVisitorAdapter<T>() {
 
     constructor(reducer: (T, T) -> T, init: T) :
         this({ it.fold(init, reducer) })
@@ -15,17 +15,17 @@ class ResultSavingVisitorAdapter<T>(
     private val results = Stack<T>()
 
     override fun visitSimpleText(block: SimpleTextBlock): T {
-        results.push(visitorInstance.visitSimpleText(block))
+        results.push(super.visitSimpleText(block))
         return results.peek()
     }
 
     override fun visitFormatText(block: FormatTextBlock): T {
-        results.push(visitorInstance.visitFormatText(block))
+        results.push(super.visitFormatText(block))
         return results.peek()
     }
 
     override fun visit(element: TextBlock): T {
-        element.accept(this)
+        super.visit(element)
         return results.pop()
     }
 
@@ -39,3 +39,5 @@ class ResultSavingVisitorAdapter<T>(
         return finalized
     }
 }
+
+class StringResultSavingVisitorAdapter : ResultSavingVisitorAdapter<String>({ it.joinToString("") })

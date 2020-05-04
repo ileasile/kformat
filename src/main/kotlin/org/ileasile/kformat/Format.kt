@@ -33,10 +33,5 @@ data class Format(
 
     companion object {
         val EMPTY = Format()
-        val DEFAULT = Format(
-            bold = false,
-            italic = false,
-            underlined = false
-        )
     }
 }
