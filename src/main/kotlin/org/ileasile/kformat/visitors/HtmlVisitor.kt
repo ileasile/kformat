@@ -15,12 +15,14 @@ class HtmlVisitor(
     private val pretty: Boolean = false
 ) :
     AbstractAdaptableVisitor<String>() {
+    private val joiner = if (pretty) "\n" else ""
+
     override fun visitSimpleText(block: SimpleTextBlock): String = block.content
 
     override fun visitFormatText(block: FormatTextBlock): String =
         StringTagsStack().apply {
             addFormat(block.format)
-            this.contents = block.children.joinToString("\n", transform = this@HtmlVisitor::visitChild)
+            this.contents = block.children.joinToString(joiner, transform = this@HtmlVisitor::visitChild)
         }.run {
             if (pretty)
                 finalizeIndent()
