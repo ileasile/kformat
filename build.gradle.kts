@@ -1,3 +1,4 @@
+import kotlin.Suppress
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -27,11 +28,13 @@ tasks {
         }
     }
 
+    @Suppress("UNUSED_VARIABLE")
     val sourceJar by registering(Jar::class) {
         archiveClassifier.set("sources")
         from(sourceSets.main.get().allSource)
     }
 
+    @Suppress("UNUSED_VARIABLE")
     val dokka by getting(DokkaTask::class) {
         outputFormat = "html"
         outputDirectory = "$buildDir/dokka"
@@ -43,6 +46,7 @@ tasks {
         inputs.dir("src/main/kotlin")
     }
 
+    @Suppress("UNUSED_VARIABLE")
     val javadocJar by registering(Jar::class) {
         group = "documentation"
         dependsOn(dokkaJavadoc)

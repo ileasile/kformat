@@ -19,8 +19,9 @@ pluginManagement {
 
     resolutionStrategy {
         eachPlugin {
-            if (requested.id.id == "org.jlleitschuh.gradle.ktlint") {
-                useModule("org.jlleitschuh.gradle:ktlint-gradle:$ktlintPluginVersion")
+            when (requested.id.id) {
+                "org.jlleitschuh.gradle.ktlint" ->
+                    useModule("org.jlleitschuh.gradle:ktlint-gradle:$ktlintPluginVersion")
             }
         }
     }
