@@ -1,5 +1,4 @@
 import kotlin.Suppress
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -35,21 +34,8 @@ tasks {
     }
 
     @Suppress("UNUSED_VARIABLE")
-    val dokka by getting(DokkaTask::class) {
-        outputFormat = "html"
-        outputDirectory = "$buildDir/dokka"
-    }
-
-    val dokkaJavadoc by registering(DokkaTask::class) {
-        outputFormat = "javadoc"
-        outputDirectory = this@tasks.javadoc.get().destinationDir!!.path
-        inputs.dir("src/main/kotlin")
-    }
-
-    @Suppress("UNUSED_VARIABLE")
     val javadocJar by registering(Jar::class) {
         group = "documentation"
-        dependsOn(dokkaJavadoc)
         archiveClassifier.set("javadoc")
         from(this@tasks.javadoc.get().destinationDir!!)
     }
@@ -58,7 +44,7 @@ tasks {
 tasks.withType(KotlinCompile::class.java) {
     kotlinOptions {
         jvmTarget = "1.8"
-        languageVersion = "1.4"
+        languageVersion = "1.8"
         freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
     }
 }

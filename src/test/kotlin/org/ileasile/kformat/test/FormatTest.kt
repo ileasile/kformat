@@ -7,10 +7,11 @@ import org.ileasile.kformat.RGBColor
 import org.ileasile.kformat.adapters.LoggingVisitorAdapter
 import org.ileasile.kformat.adapters.StringResultSavingVisitorAdapter
 import org.ileasile.kformat.adapters.adapt
+import org.ileasile.kformat.asAnsiEscaped
+import org.ileasile.kformat.asHTML
+import org.ileasile.kformat.asPlainText
 import org.ileasile.kformat.kFormat
 import org.ileasile.kformat.visitors.AnsiEscapeVisitor
-import org.ileasile.kformat.visitors.HtmlVisitor
-import org.ileasile.kformat.visitors.PlainTextVisitor
 import org.junit.jupiter.api.Test
 
 class FormatTest {
@@ -60,9 +61,9 @@ class FormatTest {
 
     @Test
     fun testConsole() {
-        println(formatted1.accept(AnsiEscapeVisitor()))
-        println(formatted1.accept(PlainTextVisitor()))
-        println(formatted1.accept(HtmlVisitor(pretty = true)))
+        println(formatted1.asAnsiEscaped())
+        println(formatted1.asPlainText())
+        println(formatted1.asHTML(true))
     }
 
     @Test
